@@ -2817,6 +2817,7 @@ packages/core/content-manager/server/src/middlewares/routing.ts
 packages/core/content-manager/server/src/controllers/init.ts
 packages/core/content-manager/server/src/controllers/index.ts
 packages/core/content-manager/server/src/controllers/__tests__/relations.test.ts
+packages/core/content-manager/server/src/controllers/__tests__/countDraftRelations.test.ts
 packages/core/content-manager/server/src/controllers/__tests__/status-lookup.test.ts
 packages/core/content-manager/server/src/controllers/__tests__/content-types.test.ts
 packages/core/content-manager/server/src/controllers/relations.ts
@@ -2954,6 +2955,7 @@ packages/core/content-manager/admin/src/hooks/useOnce.ts
 packages/core/content-manager/admin/src/hooks/usePersistentQueryParams.ts
 packages/core/content-manager/admin/src/hooks/useDocumentContext.ts
 packages/core/content-manager/admin/src/hooks/useDocumentLayout.ts
+packages/core/content-manager/admin/src/hooks/tests/useContentManagerInitData.test.tsx
 packages/core/content-manager/admin/src/hooks/tests/convertListLayoutToFieldLayouts.test.ts
 packages/core/content-manager/admin/src/hooks/tests/useDocument.test.tsx
 packages/core/content-manager/admin/src/hooks/tests/usePrev.test.ts

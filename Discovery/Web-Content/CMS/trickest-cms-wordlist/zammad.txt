@@ -93,6 +93,8 @@ spec/lib/active_model/errors_spec.rb
 spec/lib/ai/provider/anthropic_spec.rb
 spec/lib/ai/provider/mistral_spec.rb
 spec/lib/ai/provider/open_ai_spec.rb
+spec/lib/ai/provider/shared_examples/model_supports_temperature.rb
+spec/lib/ai/provider/shared_examples/check_temperature_support.rb
 spec/lib/ai/provider/shared_examples/ping.rb
 spec/lib/ai/provider/azure_spec.rb
 spec/lib/ai/provider/zammad_ai_spec.rb
@@ -2510,6 +2512,8 @@ lib/tasks/zammad/package/precompile.rb
 lib/tasks/zammad/package/uninstall.rake
 lib/tasks/zammad/package/uninstall.rb
 lib/tasks/zammad/package/install.rb
+lib/tasks/zammad/package/verify.rake
+lib/tasks/zammad/package/verify.rb
 lib/tasks/zammad/package/reinstall_all.rake
 lib/tasks/zammad/package/list.rb
 lib/tasks/zammad/package/install.rake
@@ -2602,6 +2606,7 @@ lib/password_hash.rb
 lib/telegram_helper.rb
 lib/db_helper.rb
 lib/websocket_server.rb
+lib/ai/provider/concerns/has_models_without_temperature_fallback.rb
 lib/ai/provider/concerns/has_configurable_model.rb
 lib/ai/provider/concerns/handles_response.rb
 lib/ai/provider/concerns/handles_open_ai_messages.rb
@@ -2708,6 +2713,8 @@ lib/core_ext/activejob/lib/active_job/queue_adapters/delayed_job_adapter.rb
 lib/core_ext/activesupport/lib/active_support/tagged_logging/formatter.rb
 lib/core_ext/activesupport/lib/active_support/callbacks.rb
 lib/core_ext/mail/fields/common_date_field.rb
+lib/core_ext/mail/encodings/7bit.rb
+lib/core_ext/mail/encodings/8bit.rb
 lib/core_ext/active_record/calculations/pluck_as_hash.rb
 lib/core_ext/active_record/connection_adapters/postgresql/schema_statements.rb
 lib/core_ext/active_record/store/indifferent_coder.rb
@@ -3392,6 +3399,7 @@ test/data/vcr_cassettes/lib/ai/provider/open_ai/ai_provider_openai_when_specifyi
 test/data/vcr_cassettes/lib/ai/provider/open_ai/ai_provider_openai_when_specifying_a_model_without_a_model_does_exchange_data_with_open_ai_endpoint.yml
 test/data/vcr_cassettes/lib/ai/provider/open_ai/ai_provider_openai_when_metadata_is_extracted_stores_metadata_from_response.yml
 test/data/vcr_cassettes/lib/ai/provider/open_ai/ai_provider_openai_when_specifying_a_model_with_a_valid_model_does_exchange_data_with_open_ai_endpoint.yml
+test/data/vcr_cassettes/lib/ai/provider/open_ai/ai_provider_openai_when_specifying_a_model_with_a_valid_model_with_model_temperature_support_flag_set_to_false_does_exchange_data_with_open_ai_endpoint_without_temperature.yml
 test/data/vcr_cassettes/lib/ai/provider/open_ai/ai_provider_openai_when_specifying_a_model_with_a_valid_model_with_a_model_that_does_not_support_temperature_does_exchange_data_with_open_ai_endpoint.yml
 test/data/vcr_cassettes/lib/ai/provider/zammad_ai/ai_provider_zammadai_does_exchange_data_with_zammadai_endpoint.yml
 test/data/vcr_cassettes/lib/ai/provider/zammad_ai/ai_provider_zammadai_when_metadata_is_extracted_stores_metadata_from_response.yml
@@ -3883,6 +3891,7 @@ browserlist
 Rakefile
 .markdownlint.yml
 .npmrc
+.claude/hooks/regenerate-after-edit.sh
 .claude/hooks/lint-after-edit.sh
 .claude/settings.json
 .eslint-plugin-zammad/lib/rules/zammad-copyright.js
